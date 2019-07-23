@@ -1,4 +1,5 @@
 const express = require('express');
+
 const mongoose = require('mongoose');
 const app = express();
 const User=require('../model/testquery');
@@ -24,15 +25,17 @@ router.get('/',function(req,res){
 })
 
 router.post('/add',function(req,res){
-    const message=req.body.message
+    const city=req.body.city
     const email=req.body.email
     const name=req.body.name
-    const subject=req.body.subject
+    const password=req.body.password
+    const address=req.body.address
     new User({
-        name:name,
+        address:address,
         email:email,
-        subject:subject,
-        message:message,
+        name:name,
+        city:city,
+        password:password
     }).save(function(err,data){
         if(err){
             console.log(err)
@@ -50,9 +53,9 @@ router.post('/update/:id',(req,res,next)=>{
         _id :id,
         name : req.body.name,
         email : req.body.email,
-        subject:req.body.subject,
-        message:req.body.message
-       
+        password : req.body.password,
+        city : req.body.city,
+        address : req.body.address
     };
     User.findOneAndUpdate({_id:id}, UserUpdate,(err,data)=>{
         if(err){
@@ -87,4 +90,51 @@ router.get('/delete/:id',(req,res)=>{
         }
     })
 })
+
+
+/////////////////////////////////////////////////////signin//////////////////////////////////////////////////////
+router.post('/signin',(req,res)=>{
+    const email = req.body.email;
+    const password = req.body.password;
+    User.findOne({
+        email:email
+    },(err,user)=>{
+        if(err){
+            res.json(err);
+        }
+        else{
+            if(user == null ){
+              res.json({message:"Check your Credentials"});
+            }
+            else if (user.password != password){
+                res.json({message:"Check your password"});
+            }
+            else{
+                res.json(user);
+            }
+        }
+    })
+})
+/////////////////////getdatabyid/////////////////////////////////////
+router.get('/getbyid/:id',(req,res)=>{
+    let id = req.params.id;
+    User.findOne({
+        _id:id
+    },(err,user)=>
+    {
+        if(err){
+            console.log(err);
+        }
+        else{
+            if(user==null)
+            {
+                res.json({message:"Does not exist"});
+            }
+            else{
+                res.json(user);
+            }
+        }
+    })
+})
+
 module.exports = router;

@@ -5,14 +5,17 @@ let user = new Schema({
     name: {
         type: String
     },
-    email: {
+    password: {
         type: String
     },
-    subject: {
+    city: {
         type: String
     },
-    message: {
+    address: {
         type: String
+    },
+    email:{
+        type:String
     }
 },
 );
