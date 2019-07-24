@@ -2,9 +2,8 @@ const express = require('express');
 
 const mongoose = require('mongoose');
 const app = express();
-const User=require('../model/testquery');
 const router = express.Router();
-
+const User=require('../model/contact');
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
@@ -14,7 +13,7 @@ app.use(function(req, res, next) {
   });
 
 router.get('/',function(req,res){
-    User.find(function(err,data){
+    Contact.find(function(err,data){
         if(err){
             console.log(err)
         }
@@ -23,8 +22,28 @@ router.get('/',function(req,res){
         }
     })
 })
-
 router.post('/add',function(req,res){
+    const name=req.body.name
+    const email=req.body.email
+    const subject=req.body.subject
+    const message=req.body.message
+    new User({
+        name:name,
+        email:email,
+        subject:subject,
+        message:message
+    }).save(function(err,data){
+        if(err){
+            console.log(err)
+        }
+        else {
+        console.log(data)
+        res.json(data)
+
+    }    })
+
+})
+router.post('/register',function(req,res){
     const city=req.body.city
     const email=req.body.email
     const name=req.body.name

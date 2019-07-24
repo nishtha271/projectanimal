@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UsersService {
  
-  url = 'http://localhost:3000/user';
+  url = 'http://localhost:3000';
   constructor(private http: HttpClient) { }
   addData(name,email,subject,message) {
       const obj = {name,email,subject,message};

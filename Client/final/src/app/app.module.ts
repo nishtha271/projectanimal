@@ -15,7 +15,7 @@ import { Binding1Component } from './binding1/binding1.component';
 import {FormsModule} from '@angular/forms';
 import { UpdateComponent } from './update/update.component';
 import { ViewComponent } from './view/view.component';
-import { AdminComponent } from './admin/admin.component';
+import{HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -31,13 +31,13 @@ import { AdminComponent } from './admin/admin.component';
     AboutComponent,
     Binding1Component,
     UpdateComponent,
-    ViewComponent,
-    AdminComponent
+    ViewComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

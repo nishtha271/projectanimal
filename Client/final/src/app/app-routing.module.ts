@@ -9,7 +9,7 @@ import { AdoptusComponent } from './adoptus/adoptus.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { Binding1Component } from './binding1/binding1.component';
-import { AdminComponent } from './admin/admin.component';
+
 import { ViewComponent } from './view/view.component';
 
 
@@ -23,7 +23,7 @@ const routes: Routes = [
   {path:'about',component:AboutComponent},
   {path:'contact',component:ContactComponent},
   {path:'binding1',component:Binding1Component},
-  {path:'ntha',component:AdminComponent},
+  
   {path:'view',component:ViewComponent},
  {path:'',redirectTo:'home' ,pathMatch:'full'}
 ];
