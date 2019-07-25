@@ -13,7 +13,7 @@ app.use(function(req, res, next) {
   });
 
 router.get('/',function(req,res){
-    Contact.find(function(err,data){
+    User.find(function(err,data){
         if(err){
             console.log(err)
         }

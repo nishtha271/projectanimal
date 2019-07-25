@@ -4,10 +4,12 @@
                 <img class="card-img-top"
                  src="{{obj.imageLink}}" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title">{{obj.name}}</h5>
-                    <p class="card-text">{{obj.city}}</p>
-                    <a href="#" class="btn btn-primary">
-                        {{obj.address}}</a>
+                    <h5 class="card-title">Name:{{obj.name}}</h5>
+                    <p class="card-text">email:{{obj.email}}</p>
+                    <p class="card-text">subject:{{obj.subject}}</p>
+                    <p class="card-text">message:{{obj.message}}</p>
+                    <!-- <a href="#" class="btn btn-primary">
+                        {{obj.Subjec}}</a> -->
  
          <button type="submit"
          [routerLink]="['/update',obj._id]">Update</button>

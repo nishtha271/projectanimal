@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 app.use('/user',userRoute);
 
 
-mongoose.connect('mongodb://localhost:27017/training',{ useNewUrlParser: true },()=>console.log("Db Connected"))
+mongoose.connect('mongodb://localhost:27017/training',{ useNewUrlParser: true },(err,db)=>console.log("Db Connected",err))
 // mongoose.connect(config.database);
 //  let db = mongoose.connection;
 
