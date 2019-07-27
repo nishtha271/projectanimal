@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const app = express();
 const router = express.Router();
 const User=require('../model/contact');
+const UserRegister=require('../model/UserRegister');
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
@@ -115,7 +116,7 @@ router.get('/delete/:id',(req,res)=>{
 router.post('/signin',(req,res)=>{
     const email = req.body.email;
     const password = req.body.password;
-    User.findOne({
+    UserRegister.findOne({
         email:email
     },(err,user)=>{
         if(err){
@@ -156,4 +157,25 @@ router.get('/getbyid/:id',(req,res)=>{
     })
 })
 
+////////////////////////////////////////add register //////////////////
+router.post('/addRegister',function(req,res){
+    const number=req.body.number
+    const email=req.body.email
+    const name=req.body.name
+    const password=req.body.password
+    new UserRegister({
+        email:email,
+        name:name,
+        number:number,
+        password:password
+    }).save(function(err,data){
+        if(err){
+            console.log(err)
+        }
+        else{
+            console.log(data)
+            res.json(data)
+        }
+    })
+})
 module.exports = router;
